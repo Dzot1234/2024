@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="script2.js"></script>
+  <link href="reset.css" rel="stylesheet" type="text/css" />
+  <link href="test.css" rel="stylesheet" type="text/css" />
+  <title>Покупка билетов</title>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Покупка билетов</div>
+    <div class="form-container">
+      <div class="left-section">
+        <div class="form-fields">
+          <div class="form-group">
+            <label>Выберите ряд (1-9)</label>
+            <input type="number" id="row" name="row" placeholder="Ряд" min="1" max="9" required>
+        </div>
+          <div class="form-group">
+            <label>Выберите место (1-15)</label>
+            <input type="number" id="seat" name="seat" placeholder="Место" min="1" max="15" required>
+        </div>
+        </div>
+      </div>
+      <div class="right-section">
+        <div class="form-fields">
+          <div class="form-group">
+            <label>Ваши имя и фамилия</label>
+            <input type="text" id="name" name="name" placeholder="Илья Левченко">
+          </div>
+          <div class="form-group">
+            <label>Ваш email (туда будут высланы билеты)</label>
+            <input type="email" id="email" name="email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label>Ваш телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 234 567 89-10">
+          </div>
+          <div class="form-group">
+            <label>Цена:</label>
+            <input type="text" id="price" name="price" value="0" readonly>
+          </div>
+        </div>
+        <div class="submit-btn">
+          <span>Оформить</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
