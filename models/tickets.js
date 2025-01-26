@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    adminId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
 
   Ticket.associate = function (models) {

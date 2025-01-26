@@ -1,5 +1,5 @@
 const express = require("express");
-const { Concert, Ticket } = require("./models");
+const { Concert, Ticket, Admin } = require("./models");
 const moment = require("moment");
 const nodemailer = require("nodemailer");
 
@@ -34,6 +34,120 @@ app.get('/api/concerts', async (req, res) => {
         console.error("Ошибка при получении концертов:", error);
         res.status(500).send("Ошибка сервера");
     }
+});
+
+app.post("/api/login", async (req, res) => {
+  const { login, password } = req.body;
+  try {
+      const admin = await Admin.findOne({ where: { login, password } });
+      if (!admin) {
+          return res.status(401).json({ success: false, message: "Неверный логин или пароль" });
+      }
+      res.json({ success: true, message: "Авторизация успешна" });
+  } catch (err) {
+      console.error("Ошибка при авторизации:", err);
+      res.status(500).json({ success: false, message: "Ошибка сервера" });
+  }
+});
+
+
+app.post("/api/concerts", async (req, res) => {
+  const { date, city, venue } = req.body;
+
+  try {
+    const newConcert = await Concert.create({ date, city, venue });
+    res.status(201).json({ message: "Концерт добавлен успешно", concert: newConcert });
+  } catch (error) {
+    console.error("Ошибка при добавлении концерта:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
+app.get("/api/concerts/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const concert = await Concert.findByPk(id);
+    if (!concert) {
+      return res.status(404).json({ message: "Концерт не найден" });
+    }
+
+    res.json(concert);
+  } catch (error) {
+    console.error("Ошибка при получении концерта:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
+app.put("/api/concerts/:id", async (req, res) => {
+  const { id } = req.params;
+  const { date, city, venue } = req.body;
+
+  try {
+    const concert = await Concert.findByPk(id);
+    if (!concert) {
+      return res.status(404).json({ message: "Концерт не найден" });
+    }
+
+    await concert.update({ date, city, venue });
+    res.json({ message: "Концерт обновлён успешно", concert });
+  } catch (error) {
+    console.error("Ошибка при обновлении концерта:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
+app.delete("/api/concerts/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const concert = await Concert.findByPk(id);
+    if (!concert) {
+      return res.status(404).json({ message: "Концерт не найден" });
+    }
+
+    await concert.destroy();
+    res.json({ message: "Концерт удалён успешно" });
+  } catch (error) {
+    console.error("Ошибка при удалении концерта:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
+app.put("/api/tickets/:id", async (req, res) => {
+  const { id } = req.params;
+  const { row, seat, buyerName, buyerEmail, buyerPhone } = req.body;
+
+  try {
+    const ticket = await Ticket.findByPk(id);
+    if (!ticket) {
+      return res.status(404).json({ message: "Билет не найден" });
+    }
+
+    await ticket.update({ row, seat, buyerName, buyerEmail, buyerPhone });
+    res.json({ message: "Билет обновлён успешно", ticket });
+  } catch (error) {
+    console.error("Ошибка при обновлении билета:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
+app.get("/api/tickets/:concertId", async (req, res) => {
+  try {
+    const concertId = req.params.concertId;
+    const tickets = await Ticket.findAll({ where: { concertId } });
+
+    console.log(tickets);  // Логируем билеты перед отправкой на клиент
+
+    if (tickets && Array.isArray(tickets)) {
+      res.json(tickets);  // Возвращаем массив билетов
+    } else {
+      res.status(404).json({ message: "Билеты не найдены" });
+    }
+  } catch (error) {
+    console.error("Ошибка при загрузке билетов:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
 });
 
 app.post("/api/contact", async (req, res) => {
@@ -157,6 +271,6 @@ app.post("/api/book-ticket", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-    console.log(`Сервер запущен на http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });

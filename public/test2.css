@@ -7,35 +7,6 @@
     src: url('/fonts/NotoSans.ttf') format('truetype');
 }
 
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-    }
-
-    .menu {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .icons {
-        margin-left: 0;
-        justify-content: center;
-    }
-
-    .background-image {
-        height: auto;
-        width: 100%;
-    }
-
-    .age-restriction {
-        margin-right: 20px;
-        font-size: 18px;
-    }
-}
-
-
 body {
     margin: 0;
     font-family: 'NotoSans', sans-serif;
@@ -124,8 +95,10 @@ button {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 1760px;
-    height: 842px;
+    width: 100%;
+    height: auto;
+    max-width: 1760px;
+    object-fit: contain;
 }
 
 section {
@@ -217,9 +190,9 @@ section {
     justify-content: space-between;
 }
 
-/* .video-links img:hover {
+.video-links img:hover {
     transform: scale(1.05);
-} */
+}
 
 .container {
     display: grid;
@@ -311,4 +284,80 @@ input:autofill {
 
 .input.large {
     height: 125px;
+}
+
+@media (max-width: 1280px) {
+    .header {
+        height: 12vh;
+        padding: 0 5vw;
+    }
+
+    .background-image {
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    .hero {
+        height: 75vh;
+    }
+}
+
+@media (max-width: 1366px) {
+    .background-image {
+        width: 85%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .header {
+        padding: 0 3vw;
+        height: 15vh;
+    }
+
+    .menu {
+        gap: 3vw;
+    }
+
+    .icons {
+        right: 3vw;
+    }
+
+    .background-image {
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .tour-event {
+        flex-direction: column;
+    }
+
+    .tour-events {
+        gap: 2rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .background-image {
+        width: 100%;
+    }
+
+    .hero {
+        height: 70vh;
+    }
+
+    .header {
+        padding: 0 4vw;
+        height: 14vh;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
 }
