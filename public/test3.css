@@ -1,0 +1,85 @@
+.admin-panel {
+padding: 20px;
+font-family: Arial, sans-serif;
+}
+
+.admin-panel h1, .admin-panel h2 {
+margin-bottom: 20px;
+}
+
+.add-concert form,
+.edit-concerts {
+margin-bottom: 40px;
+}
+
+#concerts-list {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+}
+
+.concert-item {
+border: 1px solid #ccc;
+padding: 10px;
+border-radius: 5px;
+}
+
+button {
+margin-top: 10px;
+cursor: pointer;
+}
+
+.modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+}
+
+.modal.hidden {
+display: none;
+}
+
+.modal-content {
+background-color: #fff;
+padding: 20px;
+border-radius: 10px;
+width: 400px;
+text-align: center;
+}
+
+.modal-content h2 {
+margin-bottom: 20px;
+}
+
+.modal-content form {
+display: flex;
+flex-direction: column;
+}
+
+.modal-content input,
+.modal-content button {
+margin-bottom: 10px;
+padding: 10px;
+}
+
+.modal-content button {
+cursor: pointer;
+}
+.hidden {
+display: none;
+}
+
+.modal-content {
+background: white;
+padding: 20px;
+border-radius: 10px;
+max-width: 500px;
+margin: auto;
+}

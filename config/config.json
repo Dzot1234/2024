@@ -1,26 +1,26 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "concert_tickets",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "3000"
+    "password": null,
+    "database": "concert_tickets.sqlite",
+    "host": "localhost",
+    "dialect": "sqlite",
+    "storage": "./concert_tickets.sqlite"
   },
   "test": {
     "username": "root",
-    "password": "root",
-    "database": "concert_tickets",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "3000"
+    "password": null,
+    "database": "concert_tickets_test.sqlite",
+    "host": "localhost",
+    "dialect": "sqlite",
+    "storage": "./concert_tickets_test.sqlite"
   },
   "production": {
     "username": "root",
-    "password": "root",
-    "database": "concert_tickets",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "3000"
+    "password": null,
+    "database": "concert_tickets_production.sqlite",
+    "host": "localhost",
+    "dialect": "sqlite",
+    "storage": "./concert_tickets_production.sqlite"
   }
 }

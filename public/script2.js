@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".submit-btn span").addEventListener("click", async () => {
-console.log("Кнопка нажата!");
 
 const params = new URLSearchParams(window.location.search);
 const concertId = params.get("id");
@@ -77,5 +76,4 @@ if (row >= 1 && row <= 3) {
 }
 
 priceInput.value = price;
-console.log("Цена установлена:", price);
 });
